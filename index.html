@@ -268,7 +268,7 @@ a{color:inherit}
       <div class="intro">
         <div class="eyebrow">GenAI in the enterprise · Field-built</div>
         <h1>Work our clients <em>run on</em> every week</h1>
-        <p class="lede">Twelve engagements across cement, cables, retail, housing finance and energy. Each one is a working build, not a slide.</p>
+        <p class="lede">Sixteen engagements across cement, cables, retail, housing finance, energy and real estate. Each one is a working build, not a slide.</p>
 
         <div class="now fade" id="now" aria-live="polite"></div>
       </div>
@@ -386,7 +386,23 @@ const CASES = [
  {slug:"sterlite-hr-talent-tracker", company:"Sterlite Electric", sector:"Power Transmission", fn:"HR", title:"Executive Talent Tracker", build:"Scorecard tool",
   sub:"Sterlite Electric's HR team learned to prompt GenAI into building their own tool: one scorecard per leader with rating history, retention risk, readiness and successors.",
   kpis:[["2 days","Talent review pack, from ~3 weeks"],["89%","Leaders with a named successor"],["30+","Data fields on every scorecard"]],
-  tools:"GenAI prompting, PDF/PPT/Excel export", pri:"#1B5E3F", acc:"#2FBF71", deep:"#0C2B1E"}
+  tools:"GenAI prompting, PDF/PPT/Excel export", pri:"#1B5E3F", acc:"#2FBF71", deep:"#0C2B1E"},
+ {slug:"bharat-petroleum-plant-operations-dynamic-sop", company:"Bharat Petroleum", sector:"Oil & Gas", fn:"Plant Operations", title:"Dynamic SOPs for LPG Plant Operations", build:"Interactive SOPs",
+  sub:"Long LPG plant SOPs became living flowcharts, sequence diagrams, Gantt plans and mind maps, with step-by-step playback and scenario changes.",
+  kpis:[["48", "SOPs converted to living diagrams"], ["2 days", "To update an SOP on the floor, from ~3 weeks"], ["−42%", "SOP-related audit observations, pilot plants"]],
+  tools:"Claude, Mermaid.js, D3.js, version control, QR codes", pri:"#5B34C7", acc:"#F5A524", deep:"#1C0F3D"},
+ {slug:"amber-procurement-copper-price-prediction", company:"Amber Enterprises", sector:"Electronics Manufacturing", fn:"Procurement", title:"Copper Price Intelligence", build:"Forecasting cockpit",
+  sub:"A copper price prediction cockpit brings together global signals, a 3D event timeline and six-month what-if forecasts, linked to copper use inside an AC.",
+  kpis:[["−1.9%", "Copper buy price vs LME monthly average"], ["4.6%", "3-month forecast error, vs 7.9% for no change"], ["2 hrs", "Weekly copper call prep, from ~2 days"]],
+  tools:"Claude, Python, D3.js, Three.js, exchange data, ERP extract", pri:"#9A4E1C", acc:"#1F9A92", deep:"#1B120D"},
+ {slug:"k-raheja-project-and-design-3d-product-engineering", company:"K Raheja Corp", sector:"Real Estate", fn:"Projects & Design", title:"3D Product Engineering", build:"Interactive 3D",
+  sub:"A static exploded drawing became an interactive 3D enclosure, configurator and installation guide, aligning design, procurement and site teams on one model.",
+  kpis:[["3.2 hrs", "Install time per enclosure, from ~6.5 hours"], ["−58%", "Snags at handover, per 100 enclosures"], ["15 min", "Bill of materials per tower, from 2 days"]],
+  tools:"Claude, Three.js, D3.js, manufacturer drawing, site tablets", pri:"#2B2B2B", acc:"#B08D57", deep:"#141414"},
+ {slug:"landmark-hr-succession-planning-workbench", company:"Landmark Group", sector:"Retail", fn:"HR", title:"Succession Planning Workbench", build:"Talent workbench",
+  sub:"One talent workbench brings eight concepts together with a moving 9-box, critical-role succession pipelines and GenAI summaries of talent notes.",
+  kpis:[["3 wks", "Talent review cycle, from ~9 weeks"], ["71%", "Critical roles with a ready successor, from 42%"], ["−70%", "Calibration prep time with AI summaries"]],
+  tools:"Claude, D3.js, Excel / HRMS extract, optional OpenAI API with HR's own key", pri:"#0E4C61", acc:"#E0A526", deep:"#082F3D"}
 ];
 CASES.forEach((c,i) => { c.i = i; c.url = "cases/" + c.slug + ".html"; c.hero = "thumbs/" + c.slug + "-hero.jpg"; c.scroll = "thumbs/" + c.slug + "-scroll.jpg";
   c.hay = [c.company,c.sector,c.fn,c.title,c.build,c.sub,c.tools,c.kpis.map(k=>k.join(" ")).join(" ")].join(" ").toLowerCase(); });
