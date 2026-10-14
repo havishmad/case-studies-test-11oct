@@ -250,10 +250,31 @@ a{color:inherit}
   *{animation:none!important;transition-duration:.01s!important}
   .dot.on::after{transform:scaleX(1)}
 }
+
+/* HMC section navigation - the existing case study layout remains untouched */
+.hmc-section-nav{background:#080f21;color:#fff;border-bottom:1px solid rgba(255,255,255,.18);position:relative;z-index:5}
+.hmc-section-nav .wrap{display:flex;align-items:center;justify-content:center;gap:10px;padding-block:12px}
+.hmc-section-tab{font-family:var(--sans);font-size:.88rem;font-weight:700;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:transparent;color:rgba(255,255,255,.8);padding:10px 22px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.hmc-section-tab:hover{border-color:#f2b94c;color:#fff}
+.hmc-section-tab[aria-selected="true"]{background:#f1b83b;color:#121629;border-color:#f1b83b}
+.hmc-deck{min-height:calc(100vh - 70px);background:#091428;color:#fff;padding:28px 0 50px}
+.hmc-deck-title{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.hmc-deck-title h1{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem)}
+.hmc-deck-title p{color:#bbcade;font-size:.88rem;margin-top:6px}
+.hmc-deck-link{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:10px 17px;background:#f1b83b;color:#10192e;font-size:.86rem;font-weight:700;text-decoration:none}
+.hmc-pdf-frame{display:block;width:100%;height:calc(100vh - 195px);min-height:570px;border:1px solid #516581;border-radius:10px;background:#fff}
+.hmc-deck-fallback{font-size:.82rem;color:#bbcade;margin-top:12px}
+.hmc-deck-fallback a{color:#f1b83b}
+@media(max-width:600px){.hmc-section-nav .wrap{padding-inline:12px;gap:7px}.hmc-section-tab{padding:9px 12px;font-size:.77rem}.hmc-pdf-frame{min-height:450px;height:70vh}.hmc-deck{padding-top:20px}}
 </style>
 
 </head>
 <body>
+<nav class="hmc-section-nav" aria-label="HMC website sections"><div class="wrap" role="tablist" aria-label="Explore HMC">
+  <button type="button" class="hmc-section-tab" id="tab-stories" role="tab" aria-selected="true" aria-controls="stories-panel">Customer Success Stories</button>
+  <button type="button" class="hmc-section-tab" id="tab-deck" role="tab" aria-selected="false" aria-controls="deck-panel">Corporate Deck</button>
+</div></nav>
+<div id="stories-panel" role="tabpanel" aria-labelledby="tab-stories">
 <header class="hero" id="hero">
   <div class="wrap">
     <nav class="nav" aria-label="Library">
@@ -314,6 +335,18 @@ a{color:inherit}
     </div>
   </div>
 </main>
+
+</div>
+<section id="deck-panel" class="hmc-deck" role="tabpanel" aria-labelledby="tab-deck" hidden>
+  <div class="wrap">
+    <div class="hmc-deck-title">
+      <div><h1>HMC Corporate Deck</h1><p>Havish M Consulting · Explore our capabilities, clients and enterprise AI programmes · 74 pages</p></div>
+      <a class="hmc-deck-link" href="hmc-corporate-deck.pdf" target="_blank" rel="noopener">Open PDF in new tab ↗</a>
+    </div>
+    <iframe id="hmcPdf" class="hmc-pdf-frame" title="Havish M Consulting corporate deck (74-page PDF)" loading="lazy" data-pdf="hmc-corporate-deck.pdf#toolbar=1&navpanes=0"></iframe>
+    <p class="hmc-deck-fallback">Scroll through the PDF above. If the PDF viewer is not supported on your device, <a href="hmc-corporate-deck.pdf" target="_blank" rel="noopener">open the deck directly</a>.</p>
+  </div>
+</section>
 
 <div class="peek" id="peek" hidden role="dialog" aria-modal="true" aria-labelledby="pkTitle">
   <div class="scrim" data-close></div>
@@ -611,6 +644,33 @@ document.addEventListener("keydown", e => {
 if (state.q) $("#q").value = state.q;
 apply();
 const h = location.hash.slice(1); const hit = CASES.find(c => c.slug === h); if (hit) openPeek(hit.i);
+})();
+</script>
+
+<script>
+(function(){
+  const storiesTab=document.getElementById('tab-stories');
+  const deckTab=document.getElementById('tab-deck');
+  const stories=document.getElementById('stories-panel');
+  const deck=document.getElementById('deck-panel');
+  const viewer=document.getElementById('hmcPdf');
+  function show(which){
+    const isDeck=which==='deck';
+    stories.hidden=isDeck;
+    deck.hidden=!isDeck;
+    storiesTab.setAttribute('aria-selected',String(!isDeck));
+    deckTab.setAttribute('aria-selected',String(isDeck));
+    if(isDeck && !viewer.hasAttribute('src')) viewer.setAttribute('src',viewer.dataset.pdf);
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  storiesTab.addEventListener('click',()=>show('stories'));
+  deckTab.addEventListener('click',()=>show('deck'));
+  [storiesTab,deckTab].forEach((tab,index)=>tab.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+      e.preventDefault();const next=(index+(e.key==='ArrowRight'?1:-1)+2)%2;
+      (next===0?storiesTab:deckTab).focus();show(next===0?'stories':'deck');
+    }
+  }));
 })();
 </script>
 
