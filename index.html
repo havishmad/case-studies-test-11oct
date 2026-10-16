@@ -268,7 +268,7 @@ a{color:inherit}
       <div class="intro">
         <div class="eyebrow">GenAI in the enterprise · Field-built</div>
         <h1>Work our clients <em>run on</em> every week</h1>
-        <p class="lede">Sixteen engagements across cement, cables, retail, housing finance, energy and real estate. Each one is a working build, not a slide.</p>
+        <p class="lede">Seventeen engagements across cement, cables, retail, housing finance, energy and real estate. Each one is a working build, not a slide.</p>
 
         <div class="now fade" id="now" aria-live="polite"></div>
       </div>
@@ -402,7 +402,11 @@ const CASES = [
  {slug:"landmark-hr-succession-planning-workbench", company:"Landmark Group", sector:"Retail", fn:"HR", title:"Succession Planning Workbench", build:"Talent workbench",
   sub:"One talent workbench brings eight concepts together with a moving 9-box, critical-role succession pipelines and GenAI summaries of talent notes.",
   kpis:[["3 wks", "Talent review cycle, from ~9 weeks"], ["71%", "Critical roles with a ready successor, from 42%"], ["−70%", "Calibration prep time with AI summaries"]],
-  tools:"Claude, D3.js, Excel / HRMS extract, optional OpenAI API with HR's own key", pri:"#0E4C61", acc:"#E0A526", deep:"#082F3D"}
+  tools:"Claude, D3.js, Excel / HRMS extract, optional OpenAI API with HR's own key", pri:"#0E4C61", acc:"#E0A526", deep:"#082F3D"},
+ {slug:"amber-supply-chain-logistics-digital-twin", company:"Amber Enterprises", sector:"Electronics Manufacturing", fn:"Supply Chain", title:"Plant Logistics Digital Twin", build:"Interactive 3D",
+  sub:"A live 3D view of each truck, dock and dispatch bay, with a peak-season dock simulator and auto-drafted shift handovers.",
+  kpis:[["−38%", "Inbound truck turnaround time"], ["91%", "Dock utilisation, from 64%"], ["−52%", "Truck detention charges"]],
+  tools:"Three.js, Claude, Python SimPy, D3.js, gate and ERP logs", pri:"#0F5E63", acc:"#F2B705", deep:"#14181D"}
 ];
 CASES.forEach((c,i) => { c.i = i; c.url = "cases/" + c.slug + ".html"; c.hero = "thumbs/" + c.slug + "-hero.jpg"; c.scroll = "thumbs/" + c.slug + "-scroll.jpg";
   c.hay = [c.company,c.sector,c.fn,c.title,c.build,c.sub,c.tools,c.kpis.map(k=>k.join(" ")).join(" ")].join(" ").toLowerCase(); });
